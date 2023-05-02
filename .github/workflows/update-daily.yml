@@ -2,9 +2,21 @@ name: Update README with today's date
 run-name: Updating README with today's date
 
 on: push
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      actions: write
+      checks: write
+      contents: write
+      deployments: write
+      issues: write
+      packages: write
+      pull-requests: write
+      repository-projects: write
+      security-events: write
+      statuses: write
     steps:
       - uses: actions/checkout@v3
       - run: |
