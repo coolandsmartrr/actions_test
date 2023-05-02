@@ -1,0 +1,27 @@
+name: Update README with today's date
+
+on: [push]
+  # schedule:
+    # - cron: '0 0 * * *' # Runs everyday at midnight UTC
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Install dependencies
+      run: |
+        npm install -g github-username/repo-name
+        
+    - name: Update README
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        echo $(date +%Y-%m-%d) > README.md
+        git config --global user.email "github-actions@github.com"
+        git config --global user.name "Github Actions"
+        git add README.md
+        git commit -m "Update README with today's date"
+        git push origin main
