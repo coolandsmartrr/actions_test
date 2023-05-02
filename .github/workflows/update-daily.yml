@@ -1,4 +1,5 @@
 name: Update README with today's date
+run-name: Updating README with today's date
 
 on: [push]
   # schedule:
@@ -7,11 +8,13 @@ on: [push]
 jobs:
   update-readme:
     runs-on: ubuntu-latest
-    - name: Update README
-      run: |
-        echo $(date +%Y-%m-%d) > README.md
-        git config --global user.email "github-actions@github.com"
-        git config --global user.name "Github Actions"
-        git add README.md
-        git commit -m "Update README with today's date"
-        git push origin main
+    steps:
+      - uses: actions/checkout@v3
+      - name: Write today's date into README
+        run: echo $(date +%Y-%m-%d) > README.md
+      - name: stage changed files
+        run: git add README.md
+      - name: commit changed files
+        run: git commit -m "Update README with today's date"
+      - name: push changed README
+        run: git push origin main
