@@ -1,29 +1,16 @@
 name: Update README with today's date
 run-name: Updating README with today's date
 
-on: [push]
-  # schedule:
-    # - cron: '0 0 * * *' # Runs everyday at midnight UTC
-
+on: push
 jobs:
-  update-readme:
+  build:
     runs-on: ubuntu-latest
-    env:
-      REPO: ${{ github.repository }}
-      ISSUE_NUM: ${{ github.event.issue.number }}
-      ISSUE_TITLE: ${{ github.event.issue.title }}
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v3
-      - name: Write today's date into README
-        run: echo $(date +%Y-%m-%d) > README.md
-      - name: set up credentials
-        run: |
+      - run: |
+          date > generated.txt
           git config user.name github-actions
           git config user.email github-actions@github.com
-      - name: stage changed files
-        run: git add README.md
-      - name: commit changed files
-        run: git commit -m "Update README with today's date"
-      - name: push changed README
-        run: git push origin main
+          git add .
+          git commit -m "generated"
+          git push
