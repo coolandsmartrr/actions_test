@@ -7,17 +7,7 @@ on: [push]
 jobs:
   update-readme:
     runs-on: ubuntu-latest
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-      
-    - name: Install dependencies
-      run: |
-        npm install -g github-username/repo-name
-        
     - name: Update README
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         echo $(date +%Y-%m-%d) > README.md
         git config --global user.email "github-actions@github.com"
