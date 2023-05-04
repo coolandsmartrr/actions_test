@@ -1,9 +1,9 @@
 name: Update README with today's date
 run-name: Updating README with today's date
 
-on: 
-  schedule:
-    - cron: '0 0 * * *' # Runs everyday at midnight UTC
+on: push
+  # schedule:
+  #   - cron: '0 0 * * *' # Runs everyday at midnight UTC
 
 permissions:
   actions: write
