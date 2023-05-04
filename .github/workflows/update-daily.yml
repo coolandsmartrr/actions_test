@@ -1,9 +1,9 @@
 name: Update README with today's date
 run-name: Updating README with today's date
 
-on: push
-  # schedule:
-  #   - cron: '0 0 * * *' # Runs everyday at midnight UTC
+on: 
+  schedule:
+    - cron: '0 0 * * *' # Runs everyday at midnight UTC
 
 permissions:
   actions: write
@@ -28,5 +28,5 @@ jobs:
           git config user.name coolandsmartrr
           git config user.email coolandsmartrr@gmail.com
           git add .
-          git commit -m "generated"
+          git commit -m "Updated to today's date"
           git push
